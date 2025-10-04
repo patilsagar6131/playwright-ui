@@ -35,4 +35,5 @@ test('fill the text boxes',{tag:['@regression','@textbox']},async ({page})=>{
     await page.goto(process.env.URL!);
     await demoQA.clickOnElementsLink();
     await demoQA.clickOnTextBoxLink();   
+    
 })
