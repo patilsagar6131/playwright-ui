@@ -22,6 +22,7 @@ export class Mongo{
 		console.log('Connected to Mongo DB and fetching document . . . ');
 		const document = await collection.findOne({ name: documentName });
 		console.log('Test Data Document fetched from DB . . . ');
+		console.log(document)
 		return document;
 	}
 	
