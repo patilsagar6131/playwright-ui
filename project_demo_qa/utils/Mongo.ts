@@ -7,11 +7,9 @@ export class Mongo{
 	constructor(){	}
 
 	//connect to mongodb and retrive test data document with given name 
-	async connectToMongoDB(documentName : string){
-		if(!process.env.MONGO_URI){
-			console.log('URI property not defined');
-		}
-		const mongoClient = new MongoClient(process.env.MONGO_URI!);
+	async connectToMongoDB(connectionString : string ,documentName : string){
+		
+		const mongoClient = new MongoClient(connectionString);
 		
 		await mongoClient.connect();		
 		if(!process.env.TEST_DB) {
