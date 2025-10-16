@@ -4,7 +4,7 @@ import path from 'path';
 const env = process.env.ENV || 'qa';
 function loadEnv(projectFolder : string){
 console.info("Running test in " + env + " environment");
-
+console.log(projectFolder)
 dotenv.config({  
   path: path.resolve(__dirname, projectFolder, `.env.${env}`)
 });
@@ -50,7 +50,12 @@ export default defineConfig({
       name: 'demo_qa',
       testDir:'project_demo_qa/tests',
       use: loadEnv('project_demo_qa')         
-    }  
+    },
+    {
+      name: 'swag_labs',
+      testDir:'project_swag_labs/tests',
+      use: loadEnv('project_swag_labs')
+    } 
   ],
 
  
