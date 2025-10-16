@@ -4,6 +4,7 @@ import { Db, MongoAPIError } from "mongodb";
 import { Mongo } from "../utils/mongo";
 import { clear } from "console";
 import { getVaultSecrets } from "../utils/VaultClient";
+import process from "process";
 
 let mongo :Mongo;
 let testData: any;
