@@ -137,10 +137,10 @@ export class ShoppingPage {
     async clickCheckoutBtn(){
         await this.checkoutBtn.click();
     }
-    async fillForm(){
-        await this.firstNameTxtBox.fill('Test')
-        await this.lastNameTxtBox.fill('One')
-        await this.zipCodeTxtBox.fill('123456')
+    async fillForm(firstName:string, lastName:string,zipCode:string){
+        await this.firstNameTxtBox.fill(firstName)
+        await this.lastNameTxtBox.fill(lastName)
+        await this.zipCodeTxtBox.fill(zipCode)
         await this.submitBtn.click();
     }
     async verifyOrderPlaced(){

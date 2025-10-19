@@ -1,14 +1,22 @@
 import test, { expect, Page } from "@playwright/test";
 import { LoginPage } from "../pages/loginPage"
 import { ShoppingPage } from "../pages/ShoppingPage";
+import { Mongo } from "../../utils/Mongo";
+import { getVaultSecrets } from "../../utils/VaultClient";
 
 let loginPage : LoginPage
 let shoppingPage : ShoppingPage
 let page: Page
+let mongo: Mongo
+let testData:any
 test.beforeEach(async({page})=>{
     loginPage = new LoginPage(page);
     shoppingPage = new ShoppingPage(page);
     await loginPage.login();
+    mongo = new Mongo  
+    const mongoURI = await getVaultSecrets('playwright','mongoURI')    
+    testData = await mongo.connectToMongoDB(mongoURI,'JIRA-234');
+    
     
 })
 test('verify all elements loads successfully',{tag:['@smoke','@verifyLoading']},async({page})=>{
@@ -30,7 +38,8 @@ test('place order',{tag:['@regression','@noError']},async({page})=>{
     await shoppingPage.clickAddToCart();
     await shoppingPage.clickCartBadge();
     await shoppingPage.clickCheckoutBtn();
-    await shoppingPage.fillForm();
+    await shoppingPage.fillForm(testData.firstName,testData.lastName,testData.zipCode);
     await shoppingPage.verifyOrderPlaced();
+   
 
 })
