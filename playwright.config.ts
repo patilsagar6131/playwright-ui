@@ -2,17 +2,18 @@ import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 const env = process.env.ENV || 'qa';
+
 function loadEnv(projectFolder : string){
 console.info("Running test in " + env + " environment");
 console.log(projectFolder)
 dotenv.config({  
   path: path.resolve(__dirname, projectFolder, `.env.${env}`)
 });
+
 return {
   baseURL: process.env.URL!,
   username: process.env.USERNAME!,
-  password: process.env.PASSWORD!,
-
+  password: process.env.PASSWORD!, 
 };
 }
 
@@ -29,7 +30,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   reporter: 'html',
-  
+
   use: {   
     trace: 'on-first-retry',
     headless: false,
@@ -39,7 +40,6 @@ export default defineConfig({
       args:['--start-maximized ']
     }   
   },
-
  
   projects: [
     {
@@ -56,7 +56,5 @@ export default defineConfig({
       testDir:'project_swag_labs/tests',
       use: loadEnv('project_swag_labs')
     } 
-  ],
-
- 
+  ], 
 });

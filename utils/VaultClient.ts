@@ -1,12 +1,6 @@
 import axios from "axios";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-const VAULT_ADDR = process.env.VAULT_ADDR;
-const VAULT_TOKEN = process.env.VAULT_TOKEN;
-
-export async function getVaultSecrets(secretPath: string,key:string): Promise<string> {
+export async function getVaultSecrets(secretPath: string,key:string,VAULT_ADDR:string,VAULT_TOKEN:string): Promise<string> {
     
     const url = `${VAULT_ADDR}/v1/secret/data/${secretPath}`;
     
