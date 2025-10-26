@@ -21,3 +21,5 @@ or if you want to run all the tests inside a project use command "npx playwright
 
 Please run the hashicorp vault before running this project and copy paste your secret key value inside "project/env" path and copy paste your token in env.qa file as "VAULT_TOKEN"
 
+
+
